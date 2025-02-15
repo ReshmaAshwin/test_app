@@ -4,7 +4,7 @@ import Footer from "../app/components/footer/page";
 import MovieList from "../app/components/movieList/page.jsx";
 import NavBar from "../app/components/navBar/page.jsx";
 import LatestMovies from "@/app/components/latestMovies/page";
-import Classic from "@/app/components/classic/page";
+import Classic from "@/app/components/classicMovie/page";
 
 export default function Home() {
   const { hasMoreData } = useSelector((state) => state.movie);

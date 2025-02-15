@@ -1,3 +1,4 @@
+'use client'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
@@ -8,8 +9,7 @@ import LoadingSpinner from "../spinner/page";
 
 const TopRatedMovies = () => {
   const dispatch = useDispatch();
-  const {data}  = useSelector((state) => state.classicMovies);
-  console.log(data)
+  const data  = useSelector((state) => state.classicMovies.data);
 
   useEffect(() => {
     dispatch(fetchClassicMovies("movie/top_rated"));
@@ -18,7 +18,7 @@ const TopRatedMovies = () => {
   return (
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
       <h3 className="text-[#fd5c63] ps-4 text-[20px] ">Top Rated</h3>
-      {data?.results.length > 0 ? (
+      {data?.results?.length > 0 ? (
         <ul className="flex flex-wrap justify-center gap-5">
           {data?.results?.map((movie) => (
             <li

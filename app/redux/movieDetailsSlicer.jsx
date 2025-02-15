@@ -21,7 +21,7 @@ export const movieDetailsSlice = createSlice({
   name: "movieDetailsSlice",
   initialState: {
     isLoading: false,
-    data: null,
+    data: [],
     error: false,
     
   },

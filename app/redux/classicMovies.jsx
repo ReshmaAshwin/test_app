@@ -20,7 +20,7 @@ export const classicMovieSlice = createSlice({
   name: "classicMovieSlice",
   initialState: {
     isLoading: false,
-    data: null,
+    data: [],
     error: false,
   },
   extraReducers: (builder) => {

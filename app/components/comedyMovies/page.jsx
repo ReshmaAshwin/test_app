@@ -1,3 +1,4 @@
+'use client'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
@@ -8,8 +9,8 @@ import { fetchComedyMovies } from "@/app/redux/comedyMovies";
 
 const ComedyMovies = () => {
   const dispatch = useDispatch();
-  const  {data}  = useSelector((state) => state.comedyMovies);
-  const moviesData = data?.results.slice(15, 20);
+  const  data  = useSelector((state) => state.comedyMovies.data);
+  const moviesData = data?.results?.slice(15, 20)  || [];
 
   useEffect(() => {
     dispatch(fetchComedyMovies());

@@ -20,7 +20,7 @@ export const latestMovieSlice = createSlice({
   name: "latestMovieSlice",
   initialState: {
     isLoading: false,
-    data: null,
+    data: [],
     error: false,
   },
   extraReducers: (builder) => {

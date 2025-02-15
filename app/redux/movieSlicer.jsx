@@ -20,7 +20,7 @@ export const movieSlice = createSlice({
   name: "movieSlice",
   initialState: {
     isLoading: false,
-    data: null,
+    data: [],
     error: false,
     currentPage: 1,
     hasMoreData: false,

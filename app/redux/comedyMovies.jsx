@@ -22,7 +22,7 @@ export const comedyMovieSlice = createSlice({
   name: "comedyMovieSlice",
   initialState: {
     isLoading: false,
-    data: null,
+    data: [],
     error: false,
   },
   extraReducers: (builder) => {

@@ -1,3 +1,4 @@
+'use client'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
@@ -8,8 +9,8 @@ import LoadingSpinner from "../spinner/page";
 
 const Classic = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.classicMovies);
-  const latestMoviesData = data?.results.slice(0, 5);
+  const data = useSelector((state) => state.classicMovies.data  );
+  const latestMoviesData = data?.results?.slice(0, 5) || [];
 
   useEffect(() => {
     dispatch(fetchClassicMovies("movie/top_rated"));

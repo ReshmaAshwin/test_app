@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
@@ -33,10 +34,10 @@ const MovieList = () => {
 
   // Handle when new movies are fetched and update the list
   useEffect(() => {
-    if (movieData.data?.results) {
-      setMovies((prevMovies) => [...prevMovies, ...movieData.data.results]);
+    if (movieData?.data?.results) {
+      setMovies((prevMovies) => [...prevMovies, ...movieData?.data?.results]);
     }
-  }, [movieData.data?.results]);
+  }, [movieData?.data?.results]);
 
   const handleScroll = () => {
     const footerHeight = 1000;
@@ -65,11 +66,11 @@ const MovieList = () => {
 
   // Check if there are more movies to load
   useEffect(() => {
-    if (movieData.data?.results?.length < 20) {
+    if (movieData?.data?.results?.length < 20) {
       setHasMore(false);
       dispatch(setHasMoreData(false))
     }
-  }, [movieData.data?.results]);
+  }, [movieData?.data?.results]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -98,7 +99,7 @@ const MovieList = () => {
         </form>
 
         {loading && <p className="text-center">Loading...</p>}
-        {movieData.error && (
+        {movieData?.error && (
           <p className="text-center mt-2" style={{ color: "red" }}>
             {"Something Went wrong"}
           </p>
@@ -152,7 +153,7 @@ const MovieList = () => {
             </>
           )}
         </div>
-        {hasMore && !movieData.error && (
+        {hasMore && !movieData?.error && (
           <div className="mt-4 mb-4">
             <LoadingSpinner />
           </div>
