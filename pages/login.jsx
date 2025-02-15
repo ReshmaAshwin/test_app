@@ -2,6 +2,10 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import LOGO from "../public/images/movie.jpg"
+import Image from "next/image";
+import Link from "next/link";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,9 +39,14 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Login
-        </h2>
+        <div className="w-full flex flex-col justify-center items-center text-gray-800 mb-6">
+        <div>
+        <Image src={LOGO} alt="logo " width={40} height={40} />
+        </div>
+         <div className="font-mono text-[10px] md:text-[14px]">
+             <Link href="/"> Movie Bazzar</Link>
+            </div>
+        </div>
         {error && (
           <p className="text-red-500 text-sm text-center mb-4">{error}</p>
         )}

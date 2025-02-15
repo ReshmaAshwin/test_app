@@ -4,11 +4,11 @@ import Footer from "../app/components/footer/page";
 import MovieList from "../app/components/movieList/page.jsx";
 import NavBar from "../app/components/navBar/page.jsx";
 import LatestMovies from "@/app/components/latestMovies/page";
-import Classic from "@/app/components/classic/page";
+import ComedyMovies from "@/app/components/comedyMovies/page";
 
-export default function Home() {
+export default function Movies() {
   const { hasMoreData } = useSelector((state) => state.movie);
-
+  
   return (
     <div className="bg-gradient-to-r from-white  to-[#f0ce97] ...">
       <NavBar />
@@ -17,10 +17,10 @@ export default function Home() {
         {!hasMoreData && (
           <>
             <div>
-              <LatestMovies />
+              <ComedyMovies />
             </div>
             <div>
-              <Classic />
+              <LatestMovies />
             </div>
           </>
         )}

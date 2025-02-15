@@ -23,6 +23,7 @@ export const movieSlice = createSlice({
     data: null,
     error: false,
     currentPage: 1,
+    hasMoreData: false,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovie.pending, (state, action) => {
@@ -36,7 +37,13 @@ export const movieSlice = createSlice({
       state.error = true;
     });
   },
+  reducers: {
+    setHasMoreData: (state, action) => {
+      state.hasMoreData = action.payload 
+  }
+}
  
 });
 
+export const {setHasMoreData} = movieSlice.actions;
 export default movieSlice.reducer;

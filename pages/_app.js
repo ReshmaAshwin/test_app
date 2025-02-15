@@ -20,15 +20,23 @@ function MyApp({ Component, pageProps }) {
       setLoading(false);
     };
 
+    const handleBeforeUnload = () => {
+      setLoading(true);
+    };
+
     Router.events.on("routeChangeStart", handleRouteChangeStart);
     Router.events.on("routeChangeComplete", handleRouteChangeComplete);
     Router.events.on("routeChangeError", handleRouteChangeError);
+
+    // Listen for page reload or navigation away
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     // Cleanup event listeners when the component unmounts
     return () => {
       Router.events.off("routeChangeStart", handleRouteChangeStart);
       Router.events.off("routeChangeComplete", handleRouteChangeComplete);
       Router.events.off("routeChangeError", handleRouteChangeError);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 

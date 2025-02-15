@@ -1,12 +1,12 @@
-"use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchMovie } from "../../redux/movieSlicer";
 import { getYear } from "../../utils/utils";
 import LoadingSpinner from "../spinner/page";
-import Link from "next/link";
+import { setHasMoreData } from "../../redux/movieSlicer";
 
 const MovieList = () => {
   const [query, setQuery] = useState("");
@@ -17,20 +17,21 @@ const MovieList = () => {
   const dispatch = useDispatch();
   const movieData = useSelector((state) => state.movie);
 
-  // Reset movie list and page count when the query changes
   useEffect(() => {
     setMovies([]);
     setPage(1);
+
     if (!query.trim()) {
       setHasMore(false);
-    } 
-    
-    else {
+      dispatch(setHasMoreData(false))
+    } else {
       setHasMore(true);
-    } // Reset hasMore flag in case of a new search query
+      dispatch(setHasMoreData(true))
+
+    }
   }, [query]);
 
-  // Handle when movies are fetched and update combined list
+  // Handle when new movies are fetched and update the list
   useEffect(() => {
     if (movieData.data?.results) {
       setMovies((prevMovies) => [...prevMovies, ...movieData.data.results]);
@@ -38,15 +39,18 @@ const MovieList = () => {
   }, [movieData.data?.results]);
 
   const handleScroll = () => {
+    const footerHeight = 1000;
     const bottom =
       window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight - 10;
+      document.documentElement.scrollHeight - footerHeight - 10;
+  
     if (bottom && !loading && hasMore) {
       setPage((prev) => prev + 1);
     }
   };
+  
 
-  // Debounce logic to trigger API call after 1 second of inactivity
+  // Debounce the search input and trigger API call after 1 second of inactivity
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!query.trim()) return;
@@ -59,10 +63,11 @@ const MovieList = () => {
     return () => clearTimeout(timer);
   }, [query, page]);
 
-  // Check if there are more movies to load based on the response
+  // Check if there are more movies to load
   useEffect(() => {
     if (movieData.data?.results?.length < 20) {
       setHasMore(false);
+      dispatch(setHasMoreData(false))
     }
   }, [movieData.data?.results]);
 
@@ -71,10 +76,8 @@ const MovieList = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loading, hasMore, page]);
 
-  
-
   return (
-    <div className="min-h-screen">
+    <div className= {`${hasMore? "min-h-screen":""}`} >
       <div className="App">
         <form className="mt-5">
           <div className="flex justify-center align-middle">
@@ -110,45 +113,52 @@ const MovieList = () => {
                   key={movie.id}
                 >
                   <Link href={`movie/${movie.id}`}>
-                  <div className="h-[300px] flex justify-center align-middle">
-                    <img
-                      className="w-full"
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      alt={movie.title}
-                      width={100}
-                    />
-                  </div>
-                
-                  <h3 className="text-[20px] font-bold mt-2 truncate hover:underline">
-                    {movie.title}
-                  </h3>
+                    <div className="h-[300px] flex justify-center align-middle">
+                      <img
+                        className={`w-full h-full object-cover`}
+                        src={
+                          movie.poster_path
+                            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                            : "/images/unknown.jpg"
+                        }
+                        alt={movie.title}
+                        width={100}
+                      />
+                    </div>
 
-                  <p className="text-[14px] text-[#858383]">
-                    ({getYear(movie.release_date)})
-                  </p>
-                  {
-                    movie.overview ? (<p className=" text-[12px] line-clamp-3">{movie.overview}</p>) : <p className="text-[12px]"> No description available</p>
-                  }
-                </Link>
-                  
+                    <h3 className="text-[20px] font-bold mt-2 truncate hover:underline">
+                      {movie.title}
+                    </h3>
+
+                    <p className="text-[14px] text-[#858383]">
+                      ({getYear(movie.release_date) || "unknown"})
+                    </p>
+                    {movie.overview ? (
+                      <p className=" text-[12px] line-clamp-3">
+                        {movie.overview}
+                      </p>
+                    ) : (
+                      <p className="text-[12px]"> No description available</p>
+                    )}
+                  </Link>
                 </li>
-
               ))}
             </ul>
           ) : (
             <>
-            {
-              !hasMore && <p className="text-center">No movies to display.</p>
-            }
+              {!hasMore && query.trim() && (
+                <p className="text-center">No movies to display.</p>
+              )}
             </>
           )}
         </div>
-        {(hasMore && !movieData.error) && (
+        {hasMore && !movieData.error && (
           <div className="mt-4 mb-4">
             <LoadingSpinner />
           </div>
         )}
       </div>
+     
     </div>
   );
 };

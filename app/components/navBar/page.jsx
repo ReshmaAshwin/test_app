@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import LOGO from "../../images/movie.jpg";
+import LOGO from "../../../public/images/movie.jpg";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState, useEffect } from "react";
@@ -27,32 +27,46 @@ const NavBar = () => {
     <div className="flex flex-col">
       <div className="bg-[#000000] h-[100px] text-white flex justify-between align-middle px-5 md:px-14">
         <div className=" flex justify-center gap-1  items-center h-full">
-          <div className="w-[40px] h-[40px] ">
-            <Image className="rounded-full" src={LOGO} alt="Logo" />
-          </div>
-          <div className="font-mono text-[10px] md:text-[14px]">
-            Movie Bazzar
-          </div>
+          <Link href={"/"}>
+            <div className="w-[40px] h-[40px] ">
+              <Image className="rounded-full" src={LOGO} alt="Logo" />
+            </div>
+          </Link>
+          <Link href={"/"}>
+            <div className="font-mono text-[10px] md:text-[14px]">
+              Movie Bazzar
+            </div>
+          </Link>
         </div>
         <div className="hidden md:hidden lg:flex">
           <ul className="font-mono flex justify-center text-[18px]  items-center h-full gap-6">
-            <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
-              Home
-            </li>
+            <Link href={"/"} prefetch={false}>
+              <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
+                Home
+              </li>
+            </Link>
+            <Link href={"/movies"} prefetch={false}>
+
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
               Movies
             </li>
+            </Link>
+
+            <Link href={"/classic"}>
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
-              Tv Shows
+              Classic
             </li>
+            </Link>
+            <Link href={"/upcoming"}>
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
               Upcoming
             </li>
+            </Link>
           </ul>
         </div>
         {!login ? (
           <div className="md:hidden lg:flex  justify-center text-[16px] hidden   items-center h-full gap-4">
-            <Link href= "/login">
+            <Link href="/login">
               <button className="bg-blue-500 p-2 rounded-full w-[100px]">
                 Login
               </button>
@@ -86,18 +100,26 @@ const NavBar = () => {
       >
         <div className="flex md:flex lg:hidden justify-center items-center">
           <ul className="font-mono flex justify-center flex-col text-[18px]  items-center h-full gap-6">
+            <Link href={"/"}>
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500">
               Home
             </li>
+            </Link>
+            <Link href={"/movies"}>
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
               Movies
             </li>
+            </Link>
+            <Link href={"/classic"}>
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
-              Tv Shows
+              Classic
             </li>
+            </Link>
+            <Link href={"/upcoming"}>
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
               Upcoming
             </li>
+            </Link>
           </ul>
         </div>
         {!login ? (
