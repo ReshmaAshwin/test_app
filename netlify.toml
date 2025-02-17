@@ -2,6 +2,3 @@
   command = "npm run build || true"  # Ignore any build errors and continue deployment
   publish = ".next"                  # Publish the .next directory (for SSR/ISR)
   functions = "netlify/functions"    # Optional: if you are using Netlify functions
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"  # Automatically optimizes and configures Next.js
