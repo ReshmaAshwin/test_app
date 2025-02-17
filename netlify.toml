@@ -1,6 +1,6 @@
 [build]
-  command = "npm run build || true"  # Ignores build errors
-  publish = "out"                    # Directory to publish static output
+  command = "npm run build || true"  # Ignore any build errors and continue deployment
+  publish = ".next"                  # Publish the .next directory (for SSR/ISR)
   functions = "netlify/functions"    # Optional: if you are using Netlify functions
 
 [[plugins]]
