@@ -1,3 +1,4 @@
+'use client'
 import { useSelector } from "react-redux";
 
 import Footer from "../app/components/footer/page";
