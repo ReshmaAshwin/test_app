@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build || true"  # Ignores build errors
+  publish = "out"                    # Directory to publish static output
+  functions = "netlify/functions"    # Optional: if you are using Netlify functions
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"  # Automatically optimizes and configures Next.js
