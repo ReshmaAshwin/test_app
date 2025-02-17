@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 
-import { getYear } from "@/app/utils/utils";
+import { getYear } from "@/utils/utils";
 import LoadingSpinner from "../spinner/page";
-import { fetchComedyMovies } from "@/app/redux/comedyMovies";
+import { fetchComedyMovies } from "@/redux/comedyMovies";
 
 const ComedyMovies = () => {
   const dispatch = useDispatch();

@@ -1,10 +1,10 @@
 "use client"
 import { useSelector } from "react-redux";
 
-import Footer from "../app/components/footer/page";
-import MovieList from "../app/components/movieList/page.jsx";
-import NavBar from "../app/components/navBar/page.jsx";
-import UpComingMovies from "@/app/components/upcomingMovies/page";
+import Footer from "../components/footer/page";
+import MovieList from "../components/movieList/page.jsx";
+import NavBar from "../components/navBar/page.jsx";
+import UpComingMovies from "@/components/upcomingMovies/page";
 
 export default function Upcoming() {
   const { hasMoreData } = useSelector((state) => state.movie);

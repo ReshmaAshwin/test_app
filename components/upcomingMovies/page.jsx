@@ -3,25 +3,24 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 
-import { fetchLatestMovie } from "../../redux/latestMoviesSlicer";
-import { getYear } from "@/app/utils/utils";
+import { fetchClassicMovies } from "@/redux/classicMovies";
+import { getYear } from "@/utils/utils";
 import LoadingSpinner from "../spinner/page";
 
-const LatestMovies = () => {
+const UpComingMovies = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.latestMovies );
-  const latestMoviesData = data?.results?.slice(0, 5) || [];
+  const data  = useSelector((state) => state.classicMovies.data || []);
 
   useEffect(() => {
-    dispatch(fetchLatestMovie());
+    dispatch(fetchClassicMovies("movie/upcoming"));
   }, [dispatch]);
 
   return (
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
-      <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[20px] ">Popular Movies</h3>
-      {latestMoviesData?.length > 0 ? (
+      <h3 className="text-[#fd5c63] ps-4 text-[20px] ">Upcoming Movies</h3>
+      {data?.results?.length > 0 ? (
         <ul className="flex flex-wrap justify-center gap-5">
-          {latestMoviesData?.map((movie) => (
+          {data?.results?.map((movie) => (
             <li
               className="mb-2 md:w-[300px] lg:w-[200px] w-[250px] p-2 gap-6 shadow-md transform transition-all hover:scale-105"
               key={movie.id}
@@ -40,7 +39,7 @@ const LatestMovies = () => {
                       {movie.title}
                     </h3>
                     <p className="text-[12px] ">
-                      ({getYear(movie.release_date) || "unknown"})
+                      ({getYear(movie.release_date)|| "unknown"} )
                     </p>
                     {
                         movie.overview ?(
@@ -64,4 +63,4 @@ const LatestMovies = () => {
   );
 };
 
-export default LatestMovies;
+export default UpComingMovies;

@@ -1,11 +1,11 @@
 'use client'
 import { useSelector } from "react-redux";
 
-import Footer from "../app/components/footer/page";
-import MovieList from "../app/components/movieList/page.jsx";
-import NavBar from "../app/components/navBar/page.jsx";
-import LatestMovies from "@/app/components/latestMovies/page";
-import Classic from "@/app/components/classicMovie/page";
+import Footer from "../components/footer/page";
+import MovieList from "../components/movieList/page.jsx";
+import NavBar from "../components/navBar/page.jsx";
+import LatestMovies from "@/components/latestMovies/page";
+import Classic from "@/components/classicMovie/page";
 
 export default function Home() {
   const { hasMoreData } = useSelector((state) => state.movie);

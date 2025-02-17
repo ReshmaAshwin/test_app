@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 
-import { fetchClassicMovies } from "@/app/redux/classicMovies";
-import { getYear } from "@/app/utils/utils";
+import { fetchClassicMovies } from "@/redux/classicMovies";
+import { getYear } from "@/utils/utils";
 import LoadingSpinner from "../spinner/page";
 
 const TopRatedMovies = () => {

@@ -5,8 +5,8 @@ import { FaPlay } from "react-icons/fa";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { IoIosCloseCircle } from "react-icons/io";
 
-import { fetchMovieDetails } from "@/app/redux/movieDetailsSlicer";
-import { convertMinutesToHours, getYear } from "@/app/utils/utils";
+import { fetchMovieDetails } from "@/redux/movieDetailsSlicer";
+import { convertMinutesToHours, getYear } from "@/utils/utils";
 
 
 const MovieDetails = ({ id }) => {

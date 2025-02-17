@@ -1,6 +1,6 @@
-import Footer from "@/app/components/footer/page";
-import MovieDetails from "@/app/components/movieDetails/page";
-import NavBar from "@/app/components/navBar/page";
+import Footer from "@/components/footer/page";
+import MovieDetails from "@/components/movieDetails/page";
+import NavBar from "@/components/navBar/page";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import LOGO from "../../../public/images/movie.jpg";
+import LOGO from "../../public/images/movie.jpg";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState, useEffect } from "react";
