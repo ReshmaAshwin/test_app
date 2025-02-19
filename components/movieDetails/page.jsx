@@ -33,7 +33,7 @@ const MovieDetails = ({ id }) => {
   return (
     <>
       <div className="relative flex gap-6 justify-center flex-col md:flex-row p-8 mb-6">
-        <div className="h-auto w-auto flex flex-1 justify-center shadow-xl shadow-gray-700 bg-black p-4">
+        <div className="h-auto w-auto flex flex-1 justify-center shadow-xl shadow-gray-700  p-4">
           <img
             className=""
             src={data?.poster_path ? `https://image.tmdb.org/t/p/w500${data?.poster_path}`: "/images/unknown.jpg"}
@@ -50,7 +50,7 @@ const MovieDetails = ({ id }) => {
             <p>{getYear(data?.release_date) || "unknown"}</p>
             <div className="h-[10px] w-[10px] bg-red-700 rounded-full"></div>
             <p>
-              {data?.genres.map((item, index) => {
+              {data?.genres?.map((item, index) => {
                 return (
                   <span key={index}>
                     {item.name} {index === data.genres.length - 1 ? "" : ","}{" "}

@@ -1,34 +1,30 @@
-"use client";
+"use client"
 import { useSelector } from "react-redux";
 
 import Footer from "../components/footer/page";
 import MovieList from "../components/movieList/page.jsx";
 import NavBar from "../components/navBar/page.jsx";
-import LatestMovies from "@/components/latestMovies/page";
-import Classic from "@/components/classicMovie/page";
+import AnimatedMovies from "@/components/animatedMovies/page";
 
-export default function Home() {
+export default function Upcoming() {
   const { hasMoreData } = useSelector((state) => state.movie);
 
-  return (
-    <div>
+   return (
+    <div className="">
       <NavBar />
-      <div className="px-20 ">
+      <div className="px-20">
         <MovieList />
         {!hasMoreData && (
           <>
+            
             <div>
-              <LatestMovies />
-            </div>
-            <div>
-              <Classic />
-            </div>
-            <div>
-              <Footer />
+              <AnimatedMovies />
             </div>
           </>
         )}
       </div>
+      <div></div>
+      <Footer />
     </div>
   );
 }

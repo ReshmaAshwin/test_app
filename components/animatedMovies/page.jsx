@@ -3,21 +3,21 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 
-import { fetchClassicMovies } from "@/redux/classicMoviesSlicer";
 import { getYear } from "@/utils/utils";
 import LoadingSpinner from "../spinner/page";
+import { fetchMovieByGenre } from "@/redux/movieByGenreSlicer";
 
-const UpComingMovies = () => {
+const AnimatedMovies = () => {
   const dispatch = useDispatch();
-  const data  = useSelector((state) => state.classicMovies.data || []);
+  const data  = useSelector((state) => state.movieByGenre.data || []);
 
   useEffect(() => {
-    dispatch(fetchClassicMovies("movie/upcoming"));
+    dispatch(fetchMovieByGenre({genre:16}));
   }, [dispatch]);
 
   return (
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
-      <h3 className="text-[#fd5c63] ps-4 text-[16px] md:text-[18px] lg:text-[20px]  ">Upcoming Movies</h3>
+      <h3 className="text-[#fd5c63] ps-4 text-[16px] md:text-[18px] lg:text-[20px]  ">Animated Movies</h3>
       {data?.results?.length > 0 ? (
         <ul className="flex flex-wrap justify-center gap-5">
           {data?.results?.map((movie) => (
@@ -63,4 +63,4 @@ const UpComingMovies = () => {
   );
 };
 
-export default UpComingMovies;
+export default AnimatedMovies;

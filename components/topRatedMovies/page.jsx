@@ -1,15 +1,15 @@
-'use client'
-import { useEffect } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 
-import { fetchClassicMovies } from "@/redux/classicMovies";
+import { fetchClassicMovies } from "@/redux/classicMoviesSlicer";
 import { getYear } from "@/utils/utils";
 import LoadingSpinner from "../spinner/page";
 
 const TopRatedMovies = () => {
   const dispatch = useDispatch();
-  const data  = useSelector((state) => state.classicMovies.data);
+  const data = useSelector((state) => state.classicMovies.data);
 
   useEffect(() => {
     dispatch(fetchClassicMovies("movie/top_rated"));
@@ -17,7 +17,9 @@ const TopRatedMovies = () => {
 
   return (
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
-      <h3 className="text-[#fd5c63] ps-4 text-[20px] ">Top Rated</h3>
+      <h3 className="text-[#fd5c63] ps-4 text-[16px] md:text-[18px] lg:text-[20px]">
+        Top Rated
+      </h3>
       {data?.results?.length > 0 ? (
         <ul className="flex flex-wrap justify-center gap-5">
           {data?.results?.map((movie) => (
@@ -29,7 +31,11 @@ const TopRatedMovies = () => {
                 <div className="relative h-[300px] w-full">
                   <img
                     className={`w-full h-full object-cover`}
-                    src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`: "/images/unknown.jpg"}
+                    src={
+                      movie.backdrop_path
+                        ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+                        : "/images/unknown.jpg"
+                    }
                     alt={movie.title}
                     width={100}
                   />
@@ -39,17 +45,17 @@ const TopRatedMovies = () => {
                       {movie.title}
                     </h3>
                     <p className="text-[12px] ">
-                      ({getYear(movie.release_date)|| "unknown"} )
+                      ({getYear(movie.release_date) || "unknown"} )
                     </p>
-                    {
-                        movie.overview ?(
-                            <p className="text-[10px] line-clamp-3 ">{movie.overview}</p>
-                        ): (
-                            
-                            <p  className="text-[12px] mb-6">{"No description available"}</p>
-                        )
-                    }
-                   
+                    {movie.overview ? (
+                      <p className="text-[10px] line-clamp-3 ">
+                        {movie.overview}
+                      </p>
+                    ) : (
+                      <p className="text-[12px] mb-6">
+                        {"No description available"}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Link>

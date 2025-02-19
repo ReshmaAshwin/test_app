@@ -10,9 +10,9 @@ export default function ClassicMovie() {
   const { hasMoreData } = useSelector((state) => state.movie);
 
    return (
-    <div className="bg-gradient-to-r from-white  to-[#f0ce97] ...">
+    <div className="">
       <NavBar />
-      <div className="sm:px-10 md:px-20 lg:px-20">
+      <div className="px-20">
         <MovieList />
         {!hasMoreData && (
           <>

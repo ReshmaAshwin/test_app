@@ -2,8 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import movieReducer from "./movieSlicer";
 import movieDetailsReducer from "./movieDetailsSlicer";
 import latestMovieReducer from "./latestMoviesSlicer";
-import classicMoviesReducer from "./classicMovies";
-import comedyMovieReducer from "./comedyMovies";
+import classicMoviesReducer from "./classicMoviesSlicer";
+import comedyMovieReducer from "./comedyMoviesSlicer";
+import movieByGenreReducer from "./movieByGenreSlicer";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     latestMovies: latestMovieReducer,
     classicMovies: classicMoviesReducer,
     comedyMovies: comedyMovieReducer,
+    movieByGenre: movieByGenreReducer,
   },
 });

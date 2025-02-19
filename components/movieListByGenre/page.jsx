@@ -1,16 +1,15 @@
-"use client";
+'use client'
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router"; 
 
-import { fetchMovie } from "../../redux/movieSlicer";
+import { fetchMovieByGenre } from "@/redux/movieByGenreSlicer";
 import { getYear } from "../../utils/utils";
 import LoadingSpinner from "../spinner/page";
-import { setHasMoreData,clearMovieData } from "../../redux/movieSlicer";
+import { setHasMoreData } from "../../redux/movieByGenreSlicer";
 
-const MovieList = () => {
+const MovieListByGenre = ({genre}) => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
@@ -19,35 +18,17 @@ const MovieList = () => {
   const dispatch = useDispatch();
   const movieData = useSelector((state) => state.movie);
 
-  const router = useRouter(); 
-
-  // Reset state when navigating
   useEffect(() => {
-    const handleRouteChange = () => {
-      setQuery("");
-      setMovies([]);
-      setPage(1);
-      setHasMore(false);
-      dispatch(setHasMoreData(false));
-    };
+    setMovies([]);
+    setPage(1);
 
-    router.events.on('routeChangeStart', handleRouteChange);
-
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChange);
-    };
-  }, [router.events, dispatch]);
-
-  useEffect(() => {
     if (!query.trim()) {
-      setMovies([]);
-      setPage(1);
-      dispatch(clearMovieData())
       setHasMore(false);
-      dispatch(setHasMoreData(false));
+      dispatch(setHasMoreData(false))
     } else {
       setHasMore(true);
-      dispatch(setHasMoreData(true));
+      dispatch(setHasMoreData(true))
+
     }
   }, [query]);
 
@@ -59,21 +40,23 @@ const MovieList = () => {
   }, [movieData?.data?.results]);
 
   const handleScroll = () => {
+    const footerHeight = 1000;
     const bottom =
       window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight  - 10;
-
+      document.documentElement.scrollHeight - footerHeight - 10;
+  
     if (bottom && !loading && hasMore) {
       setPage((prev) => prev + 1);
     }
   };
+  
 
   // Debounce the search input and trigger API call after 1 second of inactivity
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!query.trim()) return;
       setLoading(true);
-      dispatch(fetchMovie({ query: query, page: page })).then(() =>
+      dispatch(fetchMovieByGenre({ query: query, page: page, genre: genre })).then(() =>
         setLoading(false)
       );
     }, 1000);
@@ -85,7 +68,7 @@ const MovieList = () => {
   useEffect(() => {
     if (movieData?.data?.results?.length < 20) {
       setHasMore(false);
-      dispatch(setHasMoreData(false));
+      dispatch(setHasMoreData(false))
     }
   }, [movieData?.data?.results]);
 
@@ -95,12 +78,12 @@ const MovieList = () => {
   }, [loading, hasMore, page]);
 
   return (
-    <div className={`${hasMore ? "min-h-screen" : ""}`}>
+    <div className= {`${hasMore? "min-h-screen":""}`} >
       <div className="App">
         <form className="mt-5">
           <div className="flex justify-center align-middle">
             <div
-              className="border flex justify-between bg-[#faf4f4] align-middle border-[#adabab] px-4 py-2
+              className="border flex justify-between bg-white align-middle border-[#adabab] px-4 py-2
              rounded-full  md:w-1/2 sm:w-4/3"
             >
               <input
@@ -108,30 +91,30 @@ const MovieList = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for a movie"
-                className="border-none w-full outline-none bg-[#faf4f4] text-black"
+                className="border-none w-full outline-none"
               />
-              <IoIosSearch className="" size={25} color="black" />
+              <IoIosSearch className="" size={25} color="gray" />
             </div>
           </div>
         </form>
 
-        {loading && <p className="text-center text-white">Loading...</p>}
+        {loading && <p className="text-center">Loading...</p>}
         {movieData?.error && (
-          <p className="text-center mt-2 " style={{ color: "red" }}>
+          <p className="text-center mt-2" style={{ color: "red" }}>
             {"Something Went wrong"}
           </p>
         )}
 
         <div className="flex justify-center align-middle mt-3">
           {movies.length > 0 ? (
-            <ul className="flex flex-wrap text-white justify-center gap-5">
+            <ul className="flex flex-wrap justify-center gap-5">
               {movies.map((movie) => (
                 <li
                   className="mb-2 md:w-[300px] lg:w-[200px]  w-[250px] p-2 gap-6 shadow-md transform transition-all hover:scale-105"
                   key={movie.id}
                 >
                   <Link href={`movie/${movie.id}`}>
-                    <div className="h-[300px]  flex justify-center align-middle">
+                    <div className="h-[300px] flex justify-center align-middle">
                       <img
                         className={`w-full h-full object-cover`}
                         src={
@@ -156,7 +139,7 @@ const MovieList = () => {
                         {movie.overview}
                       </p>
                     ) : (
-                      <p className="text-[12px] "> No description available</p>
+                      <p className="text-[12px]"> No description available</p>
                     )}
                   </Link>
                 </li>
@@ -165,7 +148,7 @@ const MovieList = () => {
           ) : (
             <>
               {!hasMore && query.trim() && (
-                <p className="text-center text-white">No movies to display.</p>
+                <p className="text-center">No movies to display.</p>
               )}
             </>
           )}
@@ -176,8 +159,9 @@ const MovieList = () => {
           </div>
         )}
       </div>
+     
     </div>
   );
 };
 
-export default MovieList;
+export default MovieListByGenre;
