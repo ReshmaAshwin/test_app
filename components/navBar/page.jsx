@@ -110,7 +110,7 @@ const NavBar = () => {
             </Link>
             <Link href={"/genres/action/28"}>
               <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
-                Classic
+                Action
               </li>
             </Link>
             <Link href={"/upcoming"}>

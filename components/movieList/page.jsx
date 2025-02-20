@@ -96,7 +96,7 @@ const MovieList = () => {
 
   return (
     <div className={`${hasMore ? "min-h-screen" : ""}`}>
-      <div className="App">
+      <div className="App px-20 ">
         <form className="mt-5">
           <div className="flex justify-center align-middle">
             <div

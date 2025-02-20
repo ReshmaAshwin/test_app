@@ -65,7 +65,7 @@ const GenreMovies = ({ title, genreId }) => {
   }, [loading, hasMore, page]);
 
   return (
-    <div className="flex flex-col justify-center align-middle mt-6 mb-4">
+    <div className="flex flex-col justify-center px-0 md:px-0 lg:px-20  align-middle mt-6 mb-4">
       <h3 className="text-[#fd5c63] ps-4 text-[16px] md:text-[18px] lg:text-[20px]  ">
         {title} Movies
       </h3>

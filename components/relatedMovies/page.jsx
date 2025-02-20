@@ -63,7 +63,7 @@ const RelatedMovies = ({ genreIds }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center align-middle mt-6 mb-4">
+    <div className="flex flex-col justify-center align-middle px-20  mt-6 mb-4">
       <div className="flex justify-between">
         <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[16px] md:text-[18px] lg:text-[20px]  ">
           Suggested

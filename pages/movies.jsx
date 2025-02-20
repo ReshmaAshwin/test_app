@@ -13,7 +13,7 @@ export default function Movies() {
   return (
     <div className="">
       <NavBar />
-      <div className="px-20">
+      <div>
         <MovieList />
         {!hasMoreData && (
           <>
@@ -26,7 +26,6 @@ export default function Movies() {
           </>
         )}
       </div>
-      <div></div>
       <Footer />
     </div>
   );

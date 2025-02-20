@@ -32,7 +32,7 @@ const MovieDetails = ({ id }) => {
   const genreIds = data?.genres?.map((genre) => genre.id).join(",");
 
   return (
-    <div className="bg-[#0a0a0a] px-20">
+    <div className="bg-[#0a0a0a]">
       <div className="relative flex gap-6 justify-center flex-col md:flex-row p-8 mb-6">
         <div className="h-auto w-auto flex flex-1 justify-center shadow-xl shadow-gray-700  p-4">
           <img

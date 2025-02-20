@@ -12,7 +12,7 @@ export default function Upcoming() {
   return (
     <div className="">
       <NavBar />
-      <div className="px-20">
+      <div>
         <MovieList />
         {!hasMoreData && (
           <>

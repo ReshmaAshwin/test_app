@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-      <div className="px-20 ">
+      <div >
         <MovieList />
         {!hasMoreData && (
           <>
