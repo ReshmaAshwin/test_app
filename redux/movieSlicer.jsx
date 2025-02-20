@@ -6,7 +6,7 @@ export const fetchMovie = createAsyncThunk(
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=e13ceb01cda9475783d91f5f870080fe&query=${query}&page=${page}&certification=PG-13`
     );
-    
+
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.status_message || "Failed to fetch movies");

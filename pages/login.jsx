@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import LOGO from "../public/images/logo.png"
+import LOGO from "../public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -40,10 +40,15 @@ const Login = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
         <div className="w-full flex flex-col justify-center items-center text-gray-800 mb-6">
-        <div>
-        <Image src={LOGO} alt="logo " className="rounded-full" width={60} height={60} />
-        </div>
-        
+          <div>
+            <Image
+              src={LOGO}
+              alt="logo "
+              className="rounded-full"
+              width={60}
+              height={60}
+            />
+          </div>
         </div>
         {error && (
           <p className="text-red-500 text-sm text-center mb-4">{error}</p>

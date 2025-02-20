@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useSelector } from "react-redux";
 
 import Footer from "../components/footer/page";
@@ -9,7 +9,7 @@ import ComedyMovies from "@/components/comedyMovies/page";
 
 export default function Movies() {
   const { hasMoreData } = useSelector((state) => state.movie);
-  
+
   return (
     <div className="">
       <NavBar />

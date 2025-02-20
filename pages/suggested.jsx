@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useSelector } from "react-redux";
 
 import Footer from "../components/footer/page";
@@ -11,26 +11,25 @@ import { useRouter } from "next/router";
 
 export default function Upcoming() {
   const { hasMoreData } = useSelector((state) => state.movie);
-  const [id,setId] =useState("");
+  const [id, setId] = useState("");
   const router = useRouter();
-const pathName = usePathname();
+  const pathName = usePathname();
 
   useEffect(() => {
-      if (pathName) {
-        const { genreIds } = router.query;
-      setId(genreIds)
-      }
-    }, [pathName]);
+    if (pathName) {
+      const { genreIds } = router.query;
+      setId(genreIds);
+    }
+  }, [pathName]);
 
-    console.log(pathName)
-   return (
+  console.log(pathName);
+  return (
     <div className="">
       <NavBar />
       <div className="px-20">
         <MovieList />
         {!hasMoreData && (
           <>
-            
             <div>
               <GenreMovies title={"Suggested"} genreId={id} />
             </div>

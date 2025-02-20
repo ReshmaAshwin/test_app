@@ -13,15 +13,16 @@ export default function Genres() {
   const [id, setId] = useState("");
   const [title, setTitle] = useState("");
   const pathName = usePathname();
-  const modifiedTitle = title.charAt(0).toUpperCase() + title.slice(1).toLowerCase();
-  
+  const modifiedTitle =
+    title.charAt(0).toUpperCase() + title.slice(1).toLowerCase();
+
   useEffect(() => {
     if (pathName) {
       const urlArray = pathName.split("/");
       const genreId = urlArray[3];
       const title = urlArray[2];
       setId(genreId);
-      setTitle(title)
+      setTitle(title);
     }
   }, [pathName]);
 
@@ -33,10 +34,7 @@ export default function Genres() {
         {!hasMoreData && (
           <>
             <div>
-              <GenreMovies
-                title={modifiedTitle}
-                genreId={id}
-              />
+              <GenreMovies title={modifiedTitle} genreId={id} />
             </div>
           </>
         )}

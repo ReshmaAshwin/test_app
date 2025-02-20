@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useSelector } from "react-redux";
 
 import Footer from "../components/footer/page";
@@ -9,14 +9,13 @@ import UpComingMovies from "@/components/upcomingMovies/page";
 export default function Upcoming() {
   const { hasMoreData } = useSelector((state) => state.movie);
 
-   return (
+  return (
     <div className="">
       <NavBar />
       <div className="px-20">
         <MovieList />
         {!hasMoreData && (
           <>
-            
             <div>
               <UpComingMovies />
             </div>

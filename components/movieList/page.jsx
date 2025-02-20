@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router"; 
+import { useRouter } from "next/router";
 
 import { fetchMovie } from "../../redux/movieSlicer";
 import { getYear } from "../../utils/utils";
 import LoadingSpinner from "../spinner/page";
-import { setHasMoreData,clearMovieData } from "../../redux/movieSlicer";
+import { setHasMoreData, clearMovieData } from "../../redux/movieSlicer";
 
 const MovieList = () => {
   const [query, setQuery] = useState("");
@@ -19,7 +19,7 @@ const MovieList = () => {
   const dispatch = useDispatch();
   const movieData = useSelector((state) => state.movie);
 
-  const router = useRouter(); 
+  const router = useRouter();
 
   // Reset state when navigating
   useEffect(() => {
@@ -31,10 +31,10 @@ const MovieList = () => {
       dispatch(setHasMoreData(false));
     };
 
-    router.events.on('routeChangeStart', handleRouteChange);
+    router.events.on("routeChangeStart", handleRouteChange);
 
     return () => {
-      router.events.off('routeChangeStart', handleRouteChange);
+      router.events.off("routeChangeStart", handleRouteChange);
     };
   }, [router.events, dispatch]);
 
@@ -42,7 +42,7 @@ const MovieList = () => {
     if (!query.trim()) {
       setMovies([]);
       setPage(1);
-      dispatch(clearMovieData())
+      dispatch(clearMovieData());
       setHasMore(false);
       dispatch(setHasMoreData(false));
     } else {
@@ -61,7 +61,7 @@ const MovieList = () => {
   const handleScroll = () => {
     const bottom =
       window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight  - 10;
+      document.documentElement.scrollHeight - 10;
 
     if (bottom && !loading && hasMore) {
       setPage((prev) => prev + 1);

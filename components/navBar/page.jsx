@@ -32,7 +32,6 @@ const NavBar = () => {
               <Image className="rounded-full" src={LOGO} alt="Logo" />
             </div>
           </Link>
-          
         </div>
         <div className="hidden md:hidden lg:flex">
           <ul className="font-mono flex justify-center text-[18px]  items-center h-full gap-6">
@@ -42,21 +41,20 @@ const NavBar = () => {
               </li>
             </Link>
             <Link href={"/movies"} prefetch={false}>
-
-            <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
-              Movies
-            </li>
+              <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
+                Movies
+              </li>
             </Link>
 
             <Link href={"/genres/action/28"}>
-            <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
-              Action
-            </li>
+              <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
+                Action
+              </li>
             </Link>
             <Link href={"/upcoming"}>
-            <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
-              Upcoming
-            </li>
+              <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
+                Upcoming
+              </li>
             </Link>
           </ul>
         </div>
@@ -86,7 +84,11 @@ const NavBar = () => {
           </div>
         )}
         <div className="h-full flex md:flex lg:hidden justify-center items-center">
-          <GiHamburgerMenu className="cursor-pointer" size={20} onClick={() => setOpen((prev) => !prev)} />
+          <GiHamburgerMenu
+            className="cursor-pointer"
+            size={20}
+            onClick={() => setOpen((prev) => !prev)}
+          />
         </div>
       </div>
       <div
@@ -97,24 +99,24 @@ const NavBar = () => {
         <div className="flex md:flex lg:hidden justify-center items-center">
           <ul className="font-mono flex justify-center flex-col text-[18px]  items-center h-full gap-6">
             <Link href={"/"}>
-            <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500">
-              Home
-            </li>
+              <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500">
+                Home
+              </li>
             </Link>
             <Link href={"/movies"}>
-            <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
-              Movies
-            </li>
+              <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
+                Movies
+              </li>
             </Link>
             <Link href={"/genres/action/28"}>
-            <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
-              Classic
-            </li>
+              <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
+                Classic
+              </li>
             </Link>
             <Link href={"/upcoming"}>
-            <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
-              Upcoming
-            </li>
+              <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
+                Upcoming
+              </li>
             </Link>
           </ul>
         </div>

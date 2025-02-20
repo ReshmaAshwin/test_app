@@ -4,8 +4,7 @@ export const fetchMovieDetails = createAsyncThunk(
   "fetchMovieDetails",
   async (id) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=e13ceb01cda9475783d91f5f870080fe&language=en-US`
-      
+      `https://api.themoviedb.org/3/movie/${id}?api_key=e13ceb01cda9475783d91f5f870080fe&language=en-US`
     );
 
     if (!response.ok) {
@@ -23,7 +22,6 @@ export const movieDetailsSlice = createSlice({
     isLoading: false,
     data: [],
     error: false,
-    
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovieDetails.pending, (state, action) => {
@@ -37,7 +35,6 @@ export const movieDetailsSlice = createSlice({
       state.error = true;
     });
   },
- 
 });
 
 export default movieDetailsSlice.reducer;

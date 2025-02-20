@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
@@ -27,8 +27,16 @@ const AnimatedMovies = () => {
     autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
-    nextArrow: <div className="slick-arrow slick-next"><FaChevronRight size={20} /></div>,
-    prevArrow: <div className="slick-arrow slick-prev"><FaChevronLeft size={20} /></div>,
+    nextArrow: (
+      <div className="slick-arrow slick-next">
+        <FaChevronRight size={20} />
+      </div>
+    ),
+    prevArrow: (
+      <div className="slick-arrow slick-prev">
+        <FaChevronLeft size={20} />
+      </div>
+    ),
     responsive: [
       {
         breakpoint: 1024,
@@ -57,12 +65,12 @@ const AnimatedMovies = () => {
   return (
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
       <div className="flex justify-between">
-      <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[16px] md:text-[18px] lg:text-[20px]  ">Animated Movies</h3>
-      <Link href={"/genres/animated/16"}>
-      <p className="underline text-[#fd5c63]">
-        More
-      </p>
-      </Link>
+        <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[16px] md:text-[18px] lg:text-[20px]  ">
+          Animated Movies
+        </h3>
+        <Link href={"/genres/animated/16"}>
+          <p className="underline text-[#fd5c63]">More</p>
+        </Link>
       </div>
       {latestMoviesData?.length > 0 ? (
         <div className="w-full">
@@ -76,7 +84,11 @@ const AnimatedMovies = () => {
                   <div className="relative h-[300px] w-full">
                     <img
                       className="w-full h-full object-cover"
-                      src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` : "/images/unknown.jpg"}
+                      src={
+                        movie.backdrop_path
+                          ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+                          : "/images/unknown.jpg"
+                      }
                       alt={movie.title}
                       width={100}
                     />
@@ -85,11 +97,17 @@ const AnimatedMovies = () => {
                       <h3 className="text-[16px] font-bold mt-2 truncate hover:underline">
                         {movie.title}
                       </h3>
-                      <p className="text-[12px] ">{getYear(movie.release_date) || "unknown"}</p>
+                      <p className="text-[12px] ">
+                        {getYear(movie.release_date) || "unknown"}
+                      </p>
                       {movie.overview ? (
-                        <p className="text-[10px] line-clamp-3">{movie.overview}</p>
+                        <p className="text-[10px] line-clamp-3">
+                          {movie.overview}
+                        </p>
                       ) : (
-                        <p className="text-[12px] mb-6">{"No description available"}</p>
+                        <p className="text-[12px] mb-6">
+                          {"No description available"}
+                        </p>
                       )}
                     </div>
                   </div>

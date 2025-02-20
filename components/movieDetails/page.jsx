@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaPlay } from "react-icons/fa";
@@ -8,7 +8,6 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { fetchMovieDetails } from "@/redux/movieDetailsSlicer";
 import { convertMinutesToHours, getYear } from "@/utils/utils";
 import RelatedMovies from "../relatedMovies/page";
-
 
 const MovieDetails = ({ id }) => {
   const dispatch = useDispatch();
@@ -30,15 +29,19 @@ const MovieDetails = ({ id }) => {
   };
 
   const duration = convertMinutesToHours(data?.runtime);
-  const genreIds = data?.genres?.map(genre => genre.id).join(',');
+  const genreIds = data?.genres?.map((genre) => genre.id).join(",");
 
   return (
-    <div  className="bg-[#0a0a0a] px-20">
+    <div className="bg-[#0a0a0a] px-20">
       <div className="relative flex gap-6 justify-center flex-col md:flex-row p-8 mb-6">
         <div className="h-auto w-auto flex flex-1 justify-center shadow-xl shadow-gray-700  p-4">
           <img
             className=""
-            src={data?.poster_path ? `https://image.tmdb.org/t/p/w500${data?.poster_path}`: "/images/unknown.jpg"}
+            src={
+              data?.poster_path
+                ? `https://image.tmdb.org/t/p/w500${data?.poster_path}`
+                : "/images/unknown.jpg"
+            }
             alt={data?.title}
             height={300}
             width={400}
@@ -70,13 +73,12 @@ const MovieDetails = ({ id }) => {
             <div className="flex justify-center items-center">
               {data?.backdrop_path && (
                 <img
-                className=""
-                src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
-                  
-                alt={data?.title}
-                height={300}
-                width={300}
-              />
+                  className=""
+                  src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+                  alt={data?.title}
+                  height={300}
+                  width={300}
+                />
               )}
             </div>
           </div>
@@ -124,7 +126,7 @@ const MovieDetails = ({ id }) => {
       )}
 
       <div>
-        <RelatedMovies genreIds={genreIds}/>
+        <RelatedMovies genreIds={genreIds} />
       </div>
     </div>
   );

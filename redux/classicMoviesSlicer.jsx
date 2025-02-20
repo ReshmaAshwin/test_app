@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchClassicMovies = createAsyncThunk(
   "fetchClassicMovies",
-  async ({search,page}) => {
+  async ({ search, page }) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/${search}?api_key=e13ceb01cda9475783d91f5f870080fe&language=en-US&page=${page}`
     );

@@ -6,7 +6,6 @@ export const fetchComedyMovies = createAsyncThunk(
     const response = await fetch(
       `
       https://api.themoviedb.org/3/discover/movie?api_key=e13ceb01cda9475783d91f5f870080fe&with_genres=35&language=en-US&page=1`
-
     );
 
     if (!response.ok) {
