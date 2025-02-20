@@ -66,10 +66,10 @@ const MovieDetails = ({ id }) => {
           <div className="mt-4">{data?.overview}</div>
           <div className="mt-10 flex gap-4">
             <div className="flex justify-center items-center">
-              {data?.poster_path && (
+              {data?.backdrop_path && (
                 <img
                 className=""
-                src={data?.backdrop_path ? `https://image.tmdb.org/t/p/w500${data.backdrop_path}`: "/images/unknown.jpg"}
+                src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
                   
                 alt={data?.title}
                 height={300}
