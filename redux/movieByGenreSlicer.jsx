@@ -2,11 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchMovieByGenre = createAsyncThunk(
   "fetchMovieByGenre",
-  async ({genre}) => {
+  async ({genre,page}) => {
+    const genreId = genre.toString();
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=e13ceb01cda9475783d91f5f870080fe&with_genres=${genre}&certification=PG-13`
+      `https://api.themoviedb.org/3/discover/movie?api_key=e13ceb01cda9475783d91f5f870080fe&with_genres=${genreId}&certification=PG-13&page=${page}`
 
     );
+    
 
     if (!response.ok) {
       const error = await response.json();

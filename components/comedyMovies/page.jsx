@@ -7,16 +7,16 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { getYear } from "@/utils/utils";
 import LoadingSpinner from "../spinner/page";
-import { fetchComedyMovies } from "@/redux/comedyMoviesSlicer";
+import { fetchMovieByGenre } from "@/redux/movieByGenreSlicer";
 
 const ComedyMovies = () => {
   const dispatch = useDispatch();
-  const  data  = useSelector((state) => state.comedyMovies.data);
-  const moviesData = data?.results;
-
-  useEffect(() => {
-    dispatch(fetchComedyMovies());
-  }, [dispatch]);
+  const { data } = useSelector((state) => state.movieByGenre);
+    const moviesData = data?.results;
+  
+    useEffect(() => {
+      dispatch(fetchMovieByGenre({genre:35, page:1}))
+    }, [dispatch]);
 
    // Slick slider settings
    const settings = {
@@ -55,7 +55,7 @@ const ComedyMovies = () => {
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
       <div className="flex justify-between">
       <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[16px] md:text-[18px] lg:text-[20px]  ">Comedy Movies</h3>
-      <Link href={"/"}>
+      <Link href={"/genres/comedy/35"}>
       <p className="underline text-[#fd5c63]">
         More
       </p>

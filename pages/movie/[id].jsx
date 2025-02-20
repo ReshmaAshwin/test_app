@@ -24,7 +24,6 @@ const Movie = () => {
     <div className=" h-screen bg-black text-white">
       <NavBar />
       <MovieDetails id={movieId} />
-      <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
       <Footer />
     </div>
   );

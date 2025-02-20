@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import Footer from "../components/footer/page";
 import MovieList from "../components/movieList/page.jsx";
 import NavBar from "../components/navBar/page.jsx";
-import LatestMovies from "@/components/latestMovies/page";
-import Classic from "@/components/classicMovie/page";
+import AnimatedMovies from "@/components/animatedMovies/page";
+import Classic from "@/components/dramaMovies/page";
 
 export default function Home() {
   const { hasMoreData } = useSelector((state) => state.movie);
@@ -18,7 +18,7 @@ export default function Home() {
         {!hasMoreData && (
           <>
             <div>
-              <LatestMovies />
+              <AnimatedMovies />
             </div>
             <div>
               <Classic />

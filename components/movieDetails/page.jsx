@@ -7,6 +7,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 
 import { fetchMovieDetails } from "@/redux/movieDetailsSlicer";
 import { convertMinutesToHours, getYear } from "@/utils/utils";
+import RelatedMovies from "../relatedMovies/page";
 
 
 const MovieDetails = ({ id }) => {
@@ -29,9 +30,10 @@ const MovieDetails = ({ id }) => {
   };
 
   const duration = convertMinutesToHours(data?.runtime);
+  const genreIds = data?.genres?.map(genre => genre.id).join(',');
 
   return (
-    <>
+    <div  className="bg-[#0a0a0a] px-20">
       <div className="relative flex gap-6 justify-center flex-col md:flex-row p-8 mb-6">
         <div className="h-auto w-auto flex flex-1 justify-center shadow-xl shadow-gray-700  p-4">
           <img
@@ -120,7 +122,11 @@ const MovieDetails = ({ id }) => {
           </div>
         </div>
       )}
-    </>
+
+      <div>
+        <RelatedMovies genreIds={genreIds}/>
+      </div>
+    </div>
   );
 };
 

@@ -1,22 +1,22 @@
-'use client'
+'use client';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Slider from "react-slick";
 
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { fetchClassicMovies } from "@/redux/classicMoviesSlicer";
 import { getYear } from "@/utils/utils";
 import LoadingSpinner from "../spinner/page";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { fetchMovieByGenre } from "@/redux/movieByGenreSlicer";
 
-const Classic = () => {
+const DramaMovies = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.classicMovies.data  );
-  const latestMoviesData = data?.results;
-
-  useEffect(() => {
-    dispatch(fetchClassicMovies("movie/top_rated"));
-  }, [dispatch]);
+  const { data } = useSelector((state) => state.movieByGenre);
+     const moviesData = data?.results;
+   
+     useEffect(() => {
+       dispatch(fetchMovieByGenre({genre:18, page:1}))
+     }, [dispatch]);
 
   // Slick slider settings
   const settings = {
@@ -24,6 +24,9 @@ const Classic = () => {
     speed: 1000,
     slidesToShow: 5,
     slidesToScroll: 5,
+    autoplay: false,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
     nextArrow: <div className="slick-arrow slick-next"><FaChevronRight size={20} /></div>,
     prevArrow: <div className="slick-arrow slick-prev"><FaChevronLeft size={20} /></div>,
     responsive: [
@@ -54,17 +57,17 @@ const Classic = () => {
   return (
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
       <div className="flex justify-between">
-      <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[16px] md:text-[18px] lg:text-[20px] ">Top Rated</h3>
-      <Link href={"/classic"}>
-      <p className="underline text-[#fd5c63] text-[16px] ">
+      <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[16px] md:text-[18px] lg:text-[20px]  ">Drama</h3>
+      <Link href={"/genres/drama/18"}>
+      <p className="underline text-[#fd5c63]">
         More
       </p>
       </Link>
       </div>
-      {latestMoviesData?.length > 0 ? (
+      {moviesData?.length > 0 ? (
         <div className="w-full">
           <Slider {...settings}>
-            {latestMoviesData.map((movie) => (
+            {moviesData.map((movie) => (
               <div
                 className="mb-2 md:w-[300px] lg:w-[200px] w-[200px] p-2 gap-6 shadow-md transform transition-all hover:scale-105"
                 key={movie.id}
@@ -102,4 +105,4 @@ const Classic = () => {
   );
 };
 
-export default Classic;
+export default DramaMovies;

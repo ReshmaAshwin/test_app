@@ -52,9 +52,9 @@ const NavBar = () => {
             </li>
             </Link>
 
-            <Link href={"/classic"}>
+            <Link href={"/genres/action/28"}>
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 hover:pb-2">
-              Classic
+              Action
             </li>
             </Link>
             <Link href={"/upcoming"}>
@@ -90,7 +90,7 @@ const NavBar = () => {
           </div>
         )}
         <div className="h-full flex md:flex lg:hidden justify-center items-center">
-          <GiHamburgerMenu size={20} onClick={() => setOpen((prev) => !prev)} />
+          <GiHamburgerMenu className="cursor-pointer" size={20} onClick={() => setOpen((prev) => !prev)} />
         </div>
       </div>
       <div
@@ -110,7 +110,7 @@ const NavBar = () => {
               Movies
             </li>
             </Link>
-            <Link href={"/classic"}>
+            <Link href={"/genres/action/28"}>
             <li className="cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-blue-500 ">
               Classic
             </li>

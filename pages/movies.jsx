@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Footer from "../components/footer/page";
 import MovieList from "../components/movieList/page.jsx";
 import NavBar from "../components/navBar/page.jsx";
-import LatestMovies from "@/components/latestMovies/page";
+import AnimatedMovies from "@/components/animatedMovies/page";
 import ComedyMovies from "@/components/comedyMovies/page";
 
 export default function Movies() {
@@ -21,7 +21,7 @@ export default function Movies() {
               <ComedyMovies />
             </div>
             <div>
-              <LatestMovies />
+              <AnimatedMovies />
             </div>
           </>
         )}

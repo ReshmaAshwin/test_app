@@ -4,19 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Slider from "react-slick";
 
-import { fetchLatestMovie } from "../../redux/latestMoviesSlicer";
+import { fetchMovieByGenre } from "@/redux/movieByGenreSlicer";
 import { getYear } from "@/utils/utils";
 import LoadingSpinner from "../spinner/page";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const LatestMovies = () => {
+const RelatedMovies = ({genreIds}) => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.latestMovies);
+  const { data } = useSelector((state) => state.movieByGenre);
   const latestMoviesData = data?.results;
-
+        console.log(genreIds,"gentre")
   useEffect(() => {
-    dispatch(fetchLatestMovie());
-  }, [dispatch]);
+    dispatch(fetchMovieByGenre({genre:genreIds, page:1}))
+  }, [genreIds]);
 
   // Slick slider settings
   const settings = {
@@ -24,7 +24,7 @@ const LatestMovies = () => {
     speed: 1000,
     slidesToShow: 5,
     slidesToScroll: 5,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000,
     pauseOnHover: true,
     nextArrow: <div className="slick-arrow slick-next"><FaChevronRight size={20} /></div>,
@@ -57,8 +57,8 @@ const LatestMovies = () => {
   return (
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
       <div className="flex justify-between">
-      <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[16px] md:text-[18px] lg:text-[20px]  ">Animated Movies</h3>
-      <Link href={"/animated"}>
+      <h3 className="text-[#fd5c63] md:ps-4 text-center lg:text-start md:text-center text-[16px] md:text-[18px] lg:text-[20px]  ">Suggested</h3>
+      <Link href={{ pathname: '/suggested', query: { genreIds: genreIds } }}>
       <p className="underline text-[#fd5c63]">
         More
       </p>
@@ -72,7 +72,7 @@ const LatestMovies = () => {
                 className="mb-2 md:w-[300px] lg:w-[200px] w-[200px] p-2 gap-6 shadow-md transform transition-all hover:scale-105"
                 key={movie.id}
               >
-                <Link href={`movie/${movie.id}`}>
+                <Link href={`${movie.id}`}>
                   <div className="relative h-[300px] w-full">
                     <img
                       className="w-full h-full object-cover"
@@ -105,4 +105,4 @@ const LatestMovies = () => {
   );
 };
 
-export default LatestMovies;
+export default RelatedMovies;

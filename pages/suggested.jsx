@@ -1,15 +1,28 @@
-'use client'
+"use client"
 import { useSelector } from "react-redux";
 
 import Footer from "../components/footer/page";
 import MovieList from "../components/movieList/page.jsx";
 import NavBar from "../components/navBar/page.jsx";
-import TopRatedMovies from "@/components/topRatedMovies/page";
 import GenreMovies from "@/components/genreMovies/page";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-export default function ClassicMovie() {
+export default function Upcoming() {
   const { hasMoreData } = useSelector((state) => state.movie);
+  const [id,setId] =useState("");
+  const router = useRouter();
+const pathName = usePathname();
 
+  useEffect(() => {
+      if (pathName) {
+        const { genreIds } = router.query;
+      setId(genreIds)
+      }
+    }, [pathName]);
+
+    console.log(pathName)
    return (
     <div className="">
       <NavBar />
@@ -19,7 +32,7 @@ export default function ClassicMovie() {
           <>
             
             <div>
-              <GenreMovies title={"action"} genreId={28} />
+              <GenreMovies title={"Suggested"} genreId={id} />
             </div>
           </>
         )}

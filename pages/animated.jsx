@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Footer from "../components/footer/page";
 import MovieList from "../components/movieList/page.jsx";
 import NavBar from "../components/navBar/page.jsx";
-import AnimatedMovies from "@/components/animatedMovies/page";
+import GenreMovies from "@/components/genreMovies/page";
 
 export default function Upcoming() {
   const { hasMoreData } = useSelector((state) => state.movie);
@@ -18,7 +18,7 @@ export default function Upcoming() {
           <>
             
             <div>
-              <AnimatedMovies />
+              <GenreMovies title={"Animated Movies"} genreId={16} />
             </div>
           </>
         )}
