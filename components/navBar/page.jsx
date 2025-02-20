@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import LOGO from "../../public/images/movie.jpg";
+import LOGO from "../../public/images/logo.png";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState, useEffect } from "react";
@@ -26,17 +26,13 @@ const NavBar = () => {
   return (
     <div className="flex flex-col">
       <div className="bg-[#000000] h-[100px] text-white flex justify-between align-middle px-5 md:px-14">
-        <div className=" flex justify-center gap-1  items-center h-full">
+        <div className=" flex justify-center gap-1 mt-4  items-center h-full">
           <Link href={"/"}>
-            <div className="w-[40px] h-[40px] ">
+            <div className="w-[100px] h-[100px] ">
               <Image className="rounded-full" src={LOGO} alt="Logo" />
             </div>
           </Link>
-          <Link href={"/"}>
-            <div className="font-mono text-[10px] md:text-[14px]">
-              Movie Bazzar
-            </div>
-          </Link>
+          
         </div>
         <div className="hidden md:hidden lg:flex">
           <ul className="font-mono flex justify-center text-[18px]  items-center h-full gap-6">

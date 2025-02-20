@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import LOGO from "../public/images/movie.jpg"
+import LOGO from "../public/images/logo.png"
 import Image from "next/image";
 import Link from "next/link";
 
@@ -41,11 +41,9 @@ const Login = () => {
       <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
         <div className="w-full flex flex-col justify-center items-center text-gray-800 mb-6">
         <div>
-        <Image src={LOGO} alt="logo " width={40} height={40} />
+        <Image src={LOGO} alt="logo " className="rounded-full" width={60} height={60} />
         </div>
-         <div className="font-mono text-[10px] md:text-[14px]">
-             <Link href="/"> Movie Bazzar</Link>
-            </div>
+        
         </div>
         {error && (
           <p className="text-red-500 text-sm text-center mb-4">{error}</p>
