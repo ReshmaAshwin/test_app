@@ -13,7 +13,7 @@ const RelatedMovies = ({ genreIds }) => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.movieByGenre);
   const latestMoviesData = data?.results;
-  console.log(genreIds, "gentre");
+
   useEffect(() => {
     dispatch(fetchMovieByGenre({ genre: genreIds, page: 1 }));
   }, [genreIds]);
@@ -22,13 +22,13 @@ const RelatedMovies = ({ genreIds }) => {
   const settings = {
     infinite: true,
     speed: 1000,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: latestMoviesData?.length < 5 ? latestMoviesData?.length : 5,
+    slidesToScroll: latestMoviesData?.length < 5 ? 0 : 5,
     autoplay: false,
     autoplaySpeed: 5000,
     pauseOnHover: true,
     nextArrow: (
-      <div className="slick-arrow slick-next">
+      <div className={`slick-arrow slick-next `}>
         <FaChevronRight size={20} />
       </div>
     ),
@@ -36,7 +36,7 @@ const RelatedMovies = ({ genreIds }) => {
       <div className="slick-arrow slick-prev">
         <FaChevronLeft size={20} />
       </div>
-    ),
+    ), 
     responsive: [
       {
         breakpoint: 1024,
@@ -61,6 +61,7 @@ const RelatedMovies = ({ genreIds }) => {
       },
     ],
   };
+  console.log(latestMoviesData)
 
   return (
     <div className="flex flex-col justify-center align-middle px-20  mt-6 mb-4">
@@ -73,7 +74,7 @@ const RelatedMovies = ({ genreIds }) => {
         </Link>
       </div>
       {latestMoviesData?.length > 0 ? (
-        <div className="w-full">
+        <div className={`${latestMoviesData?.length < 5 ? "w-auto" : "w-full"}`}>
           <Slider {...settings}>
             {latestMoviesData.map((movie) => (
               <div

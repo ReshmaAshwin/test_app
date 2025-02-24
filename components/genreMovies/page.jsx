@@ -32,9 +32,10 @@ const GenreMovies = ({ title, genreId }) => {
   }, [data?.results]);
 
   const handleScroll = () => {
+    const footerHeight = 300;
     const bottom =
       window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight - 10;
+      document.documentElement.scrollHeight - footerHeight - 10;
 
     if (bottom && !loading && hasMore) {
       setPage((prev) => prev + 1);
@@ -65,8 +66,8 @@ const GenreMovies = ({ title, genreId }) => {
   }, [loading, hasMore, page]);
 
   return (
-    <div className="flex flex-col justify-center px-0 md:px-0 lg:px-20  align-middle mt-6 mb-4">
-      <h3 className="text-[#fd5c63] ps-4 text-[16px] md:text-[18px] lg:text-[20px]  ">
+    <div className="flex flex-col justify-center px-0   align-middle mt-6 mb-4">
+      <h3 className="text-[#fd5c63] ps-5 md:text-center lg:text-start text-[16px] md:text-[18px] lg:text-[20px]  ">
         {title} Movies
       </h3>
       {movies?.length > 0 ? (

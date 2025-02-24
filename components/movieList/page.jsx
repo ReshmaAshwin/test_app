@@ -39,9 +39,9 @@ const MovieList = () => {
   }, [router.events, dispatch]);
 
   useEffect(() => {
+    setMovies([]);
+    setPage(1);
     if (!query.trim()) {
-      setMovies([]);
-      setPage(1);
       dispatch(clearMovieData());
       setHasMore(false);
       dispatch(setHasMoreData(false));

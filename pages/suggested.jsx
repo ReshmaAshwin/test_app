@@ -22,7 +22,6 @@ export default function Upcoming() {
     }
   }, [pathName]);
 
-  console.log(pathName);
   return (
     <div className="">
       <NavBar />

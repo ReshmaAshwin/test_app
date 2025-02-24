@@ -62,8 +62,6 @@ const upComingMovies = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loading, hasMore, page]);
 
-  console.log(page);
-
   return (
     <div className="flex flex-col justify-center align-middle mt-6 mb-4">
       <h3 className="text-[#fd5c63] ps-4 text-[16px] md:text-[18px] lg:text-[20px]  ">

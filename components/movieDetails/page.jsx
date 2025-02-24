@@ -13,19 +13,30 @@ const MovieDetails = ({ id }) => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.movieDetails);
   const [popup, setPopup] = useState(false);
+  const [detailsPopup, setDetailsPopup] = useState(false);
 
   useEffect(() => {
     dispatch(fetchMovieDetails(id));
   }, [id, dispatch]);
 
-  const handlePopup = () => {
-    setPopup(true);
-    document.body.style.overflow = "hidden";
+  const handlePopup = (item) => {
+    if (item === "play") {
+      setPopup(true);
+      document.body.style.overflow = "hidden";
+    } else {
+      setDetailsPopup(true);
+      document.body.style.overflow = "hidden";
+    }
   };
 
-  const handleClosePopup = () => {
-    setPopup(false);
-    document.body.style.overflow = "auto";
+  const handleClosePopup = (item) => {
+    if (item === "play") {
+      setPopup(false);
+      document.body.style.overflow = "auto";
+    } else {
+      setDetailsPopup(false);
+      document.body.style.overflow = "auto";
+    }
   };
 
   const duration = convertMinutesToHours(data?.runtime);
@@ -85,12 +96,15 @@ const MovieDetails = ({ id }) => {
           <div className="flex gap-9">
             <button
               className="mt-6 w-[90px] flex justify-center items-center gap-2 rounded-sm bg-white text-black"
-              onClick={handlePopup}
+              onClick={() => handlePopup("play")}
             >
               <FaPlay />
               <div>Play</div>
             </button>
-            <button className="mt-6 outline-none w-[120px] flex justify-center items-center gap-2 rounded-sm bg-[#828080] text-white">
+            <button
+              className="mt-6 outline-none w-[120px] flex justify-center items-center gap-2 rounded-sm bg-[#828080] text-white"
+              onClick={() => handlePopup("more")}
+            >
               <IoIosInformationCircleOutline />
               <div>More Info</div>
             </button>
@@ -104,7 +118,7 @@ const MovieDetails = ({ id }) => {
           <div className="bg-white text-black p-8 rounded-lg shadow-lg w-[80%] md:w-[60%]">
             <button
               className="flex justify-end items-end w-full"
-              onClick={handleClosePopup}
+              onClick={() => handleClosePopup("play")}
             >
               <IoIosCloseCircle size={25} />
             </button>
@@ -120,6 +134,55 @@ const MovieDetails = ({ id }) => {
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {detailsPopup && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white text-black p-8 rounded-lg shadow-lg w-auto">
+            <button
+              className="flex justify-end items-end w-full"
+              onClick={() => handleClosePopup("more")}
+            >
+              <IoIosCloseCircle size={25} />
+            </button>
+            <div>
+              {data.production_companies ? (
+                <>
+                  
+                  <h3 className="mb-6 text-base font-semibold  text-[#0a8de4] underline">
+                    Production companies
+                  </h3>
+                  <div className="flex md:flex-row flex-col  justify-start w-full gap-4">
+                    {data?.production_companies?.map((item) => {
+                      console.log(item);
+                      return (
+                        <>
+                          {item.logo_path && (
+                            <div>
+                              <img
+                                className=""
+                                src={`https://image.tmdb.org/t/p/w500${item.logo_path}`}
+                                alt={data?.title}
+                                height={100}
+                                width={100}
+                              />
+                            </div>
+                          )}
+                        </>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-xl font-semibold mb-4 mt-2">
+                    No More Information
+                  </h2>
+                </>
+              )}
             </div>
           </div>
         </div>
